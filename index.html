@@ -1,0 +1,54 @@
+<html lang ="en">
+<head>
+    <title>MyProjectUSA VCard Generator</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>MyProjectUSA VCard Generator</h1>
+<hr />
+<h2>Please enter the information below</h2>
+
+<pre id="output"></pre>
+<form id="frm1" action="/action_page.php">
+    First name: <input type="text" id="fname"><br>
+    Last name: <input type="text" id="lname"><br>
+    Email address: <input type="text" id="eml"><br>
+    Phone number (Work): <input type="text" id="pnm"><br>
+    Phone number (Cell): <input type="text" id="pCell"><br>
+    Role: <input type="text" id="role"><br>
+    <input type="button" onclick="myFunction()" value="Submit">
+</form>
+
+
+<script type="module">
+    import VCard from "https://cdn.skypack.dev/vcard-creator"
+
+    function myFunction() {
+        const fname = document.querySelector('#fname').value;
+        const lname = document.querySelector('#lname').value;
+        const pnm = document.querySelector('#pnm').value;
+        const eml = document.querySelector('#eml').value;
+        let pCell = document.querySelector('#pCell').value;
+
+        let myVCard = new VCard()
+
+
+        myVCard
+            .addName('', fname, lname, '', '')
+            .addCompany('MyProjectUSA')
+            .addRole(role)
+            .addEmail(eml)
+            .addPhoneNumber(pnm, 'PREF;WORK')
+            .addPhoneNumber(pCell, 'CELL')
+            .addAddress('3275 Sullivent AVE', 'Columbus, Ohio', '43204', 'USA')
+            .addURL('http://myprojectusa.org')
+
+        document.querySelector('#output').innerHTML = myVCard.toString()
+
+    }
+
+</script>
+
+</body>
+</html>
