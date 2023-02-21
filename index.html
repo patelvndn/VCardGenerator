@@ -41,7 +41,7 @@
 
         var myVCard = new VCard()
         myVCard
-            .addName(data.fname, data.lname, '', '', '')
+            .addName(data.lname, data.fname, '', '', '')
             .addCompany('MyProjectUSA')
             .addJobtitle(data.role)
             .addEmail(data.email)
@@ -54,21 +54,19 @@
 
         const blob = new Blob([output], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
-
+        const preElement = document.querySelector('#output')
         const downloadLink = document.createElement('a');
+
         downloadLink.download = data.lname + '.vcf';
         downloadLink.href = url;
-        downloadLink.innerText = 'Download Output as Text File';
-        document.body.appendChild(downloadLink);
-
-        const preElement = document.querySelector('#output')
-        const outputNode = document.createTextNode(output)
-        preElement.appendChild(outputNode)
-
-
-
+        downloadLink.innerText = 'Download Output as VCF File for ' + data.fname + ' ' + data.lname;
+        preElement.appendChild(downloadLink);
+        let newLine = document.createTextNode('\n');
+        preElement.appendChild(newLine);
     });
 </script>
-<pre id="output"></pre>
+<pre id="output">
+
+</pre>
 </body>
 </html>
