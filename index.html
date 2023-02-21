@@ -45,7 +45,7 @@
             .addCompany('MyProjectUSA')
             .addJobtitle(data.role)
             .addEmail(data.email)
-            .addPhoneNumber(data.phone, 'CELL')
+            .addPhoneNumber(data.phone, 'PREF:CELL')
             .addPhoneNumber('6149050977','WORK')
             .addAddress('', '', '3275 Sullivant Ave', 'Columbus', '', '43204', 'Ohio')
             .addURL('https://www.myprojectusa.org/')
@@ -59,14 +59,12 @@
 
         downloadLink.download = data.lname + '.vcf';
         downloadLink.href = url;
-        downloadLink.innerText = 'Download Output as VCF File for ' + data.fname + ' ' + data.lname;
+        downloadLink.innerText = 'Download as a VCF File for ' + data.fname + ' ' + data.lname;
         preElement.appendChild(downloadLink);
         let newLine = document.createTextNode('\n');
         preElement.appendChild(newLine);
     });
 </script>
-<pre id="output">
-
-</pre>
+<pre id="output"></pre>
 </body>
 </html>
