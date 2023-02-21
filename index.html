@@ -1,54 +1,64 @@
-<html lang ="en">
-<head>
-    <title>MyProjectUSA VCard Generator</title>
-
-    <link rel="stylesheet" href="styles.css">
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Input Your Name!</title>
 </head>
 <body>
-<h1>MyProjectUSA VCard Generator</h1>
-<hr />
-<h2>Please enter the information below</h2>
+<h1>Enter the following</h1>
+<hr>
+<form id="data" method="POST" action="vcard.js">
+    <label for="fname">Enter your first name:</label>
+    <input type="text" id="fname" name="fname"><br>
 
-<pre id="output"></pre>
-<form id="frm1" action="/action_page.php">
-    First name: <input type="text" id="fname"><br>
-    Last name: <input type="text" id="lname"><br>
-    Email address: <input type="text" id="eml"><br>
-    Phone number (Work): <input type="text" id="pnm"><br>
-    Phone number (Cell): <input type="text" id="pCell"><br>
-    Role: <input type="text" id="role"><br>
-    <input type="button" onclick="myFunction()" value="Submit">
+    <label for="lname">Enter your last name:</label>
+    <input type="text" id="lname" name="lname"><br>
+
+    <label for="email">Enter your email:</label>
+    <input type="email" id="email" name="email"><br>
+
+    <label for="phone">Enter your phone number:</label>
+    <input type="number" id="phone" name="phone"><br>
+
+    <label for="role">Enter your role:</label>
+    <input type="text" id="role" name="role"><br>
+
+    <button type="submit">Submit</button>
 </form>
-
-
 <script type="module">
     import VCard from "https://cdn.skypack.dev/vcard-creator"
 
-    function myFunction() {
-        const fname = document.querySelector('#fname').value;
-        const lname = document.querySelector('#lname').value;
-        const pnm = document.querySelector('#pnm').value;
-        const eml = document.querySelector('#eml').value;
-        let pCell = document.querySelector('#pCell').value;
+    const form = document.getElementById('data');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-        let myVCard = new VCard()
+        // Get the form data
+        const formData = new FormData(form);
 
+        // Convert the form data to an object
+        const data = Object.fromEntries(formData.entries());
 
+        var myVCard = new VCard()
         myVCard
-            .addName('', fname, lname, '', '')
+            .addName(data.fname, data.lname, '', '', '')
             .addCompany('MyProjectUSA')
-            .addRole(role)
-            .addEmail(eml)
-            .addPhoneNumber(pnm, 'PREF;WORK')
-            .addPhoneNumber(pCell, 'CELL')
-            .addAddress('3275 Sullivent AVE', 'Columbus, Ohio', '43204', 'USA')
-            .addURL('http://myprojectusa.org')
+            .addJobtitle(data.role)
+            .addEmail(data.email)
+            .addPhoneNumber(data.phone, 'CELL')
+            .addPhoneNumber('6149050977','WORK')
+            .addAddress(null, null, '3275 Sullivant Ave', 'Columbus', null, '43204', 'Ohio')
+            .addURL('https://www.myprojectusa.org/')
 
-        document.querySelector('#output').innerHTML = myVCard.toString()
+        const output = myVCard.toString()
+        const preElement = document.querySelector('#output')
+        const outputNode = document.createTextNode(output)
+        preElement.appendChild(outputNode)
 
-    }
 
+
+            });
 </script>
-
+<pre id="output"></pre>
 </body>
 </html>
