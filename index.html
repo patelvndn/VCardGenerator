@@ -47,17 +47,27 @@
             .addEmail(data.email)
             .addPhoneNumber(data.phone, 'CELL')
             .addPhoneNumber('6149050977','WORK')
-            .addAddress(null, null, '3275 Sullivant Ave', 'Columbus', null, '43204', 'Ohio')
+            .addAddress('', '', '3275 Sullivant Ave', 'Columbus', '', '43204', 'Ohio')
             .addURL('https://www.myprojectusa.org/')
 
         const output = myVCard.toString()
+
+        const blob = new Blob([output], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+
+        const downloadLink = document.createElement('a');
+        downloadLink.download = data.lname + '.vcf';
+        downloadLink.href = url;
+        downloadLink.innerText = 'Download Output as Text File';
+        document.body.appendChild(downloadLink);
+
         const preElement = document.querySelector('#output')
         const outputNode = document.createTextNode(output)
         preElement.appendChild(outputNode)
 
 
 
-            });
+    });
 </script>
 <pre id="output"></pre>
 </body>

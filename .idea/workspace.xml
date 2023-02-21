@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08f3cf0e-f389-48f3-9518-4cc9632de02f" name="Changes" comment="Can get information but not display">
-      <change afterPath="$PROJECT_DIR$/demo.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vcard.js" afterDir="false" />
+    <list default="true" id="08f3cf0e-f389-48f3-9518-4cc9632de02f" name="Changes" comment="Can output VCard, need to save to file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vcard.js" beforeDir="false" afterPath="$PROJECT_DIR$/vcard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +44,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "18.14.1",
+    "javascript.nodejs.core.library.typings.version": "18.14.0",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -65,9 +66,13 @@
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/vcardGenerator/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="vcard.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/vcard.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="Node.js.vcard.js" />
         <item itemvalue="JavaScript Debug.demo.html" />
       </list>
     </recent_temporary>
@@ -82,6 +87,7 @@
       <updated>1675793286559</updated>
       <workItem from="1675793290770" duration="3626000" />
       <workItem from="1676071426136" duration="2300000" />
+      <workItem from="1677001830915" duration="2054000" />
     </task>
     <task id="LOCAL-00001" summary="Can get information but not display">
       <created>1675814842293</created>
@@ -90,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675814842293</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Can output VCard, need to save to file">
+      <created>1677002074806</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677002074806</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,6 +122,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Can get information but not display" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can get information but not display" />
+    <MESSAGE value="Can output VCard, need to save to file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Can output VCard, need to save to file" />
   </component>
 </project>
