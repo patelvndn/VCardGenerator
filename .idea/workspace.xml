@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08f3cf0e-f389-48f3-9518-4cc9632de02f" name="Changes" comment="Can save VCF file to your own computer. but we need this to save to a server folder" />
+    <list default="true" id="08f3cf0e-f389-48f3-9518-4cc9632de02f" name="Changes" comment="Made the heading look nicer">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,6 +91,7 @@
       <workItem from="1676071426136" duration="2300000" />
       <workItem from="1677001830915" duration="3558000" />
       <workItem from="1677006863268" duration="23000" />
+      <workItem from="1677092256357" duration="181000" />
     </task>
     <task id="LOCAL-00001" summary="Can get information but not display">
       <created>1675814842293</created>
@@ -110,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677004177980</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Made the heading look nicer">
+      <created>1677092361739</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677092361739</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +143,7 @@
     <MESSAGE value="Can output VCard, need to save to file" />
     <MESSAGE value="Can save VCF file to your own computer. but we need this to save to  a server folder" />
     <MESSAGE value="Can save VCF file to your own computer. but we need this to save to a server folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can save VCF file to your own computer. but we need this to save to a server folder" />
+    <MESSAGE value="Made the heading look nicer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the heading look nicer" />
   </component>
 </project>
