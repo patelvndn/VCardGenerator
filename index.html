@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head >
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <meta charset="UTF-8">
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <meta charset="UTF-8" />
     <title>VCF File Generator</title>
-</head>
-<body>
-<h1>Enter the following</h1>
-<hr>
-<form id="data" method="POST" action="vcard.js">
-    <label for="fname">Enter your first name:</label>
-    <input type="text" id="fname" name="fname"><br>
+  </head>
+  <body>
+    <h1>Enter the following</h1>
+    <hr />
+    <form id="data" method="POST">
+      <label for="fname">Enter your first name:</label>
+      <input type="text" id="fname" name="fname" /><br />
 
-    <label for="lname">Enter your last name:</label>
-    <input type="text" id="lname" name="lname"><br>
+      <label for="lname">Enter your last name:</label>
+      <input type="text" id="lname" name="lname" /><br />
 
-    <label for="email">Enter your email:</label>
-    <input type="email" id="email" name="email"><br>
+      <label for="email">Enter your email:</label>
+      <input type="email" id="email" name="email" /><br />
 
-    <label for="phone">Enter your phone number:</label>
-    <input type="number" id="phone" name="phone"><br>
+      <label for="phone">Enter your phone number:</label>
+      <input type="tel" id="phone" name="phone" /><br />
 
-    <label for="role">Enter your role:</label>
-    <input type="text" id="role" name="role"><br>
+      <label for="role">Enter your role:</label>
+      <input type="text" id="role" name="role" /><br />
 
-    <button type="submit">Submit</button>
-</form>
-<script type="module">
-    import VCard from "https://cdn.skypack.dev/vcard-creator"
+      <button type="submit">Submit</button>
+    </form>
+    <script type="module">
+      import VCard from "https://cdn.skypack.dev/vcard-creator";
 
-    const form = document.getElementById('data');
-    form.addEventListener('submit', function(event) {
+      const form = document.getElementById("data");
+      form.addEventListener("submit", function (event) {
         event.preventDefault();
 
         // Get the form data
@@ -39,32 +39,22 @@
         // Convert the form data to an object
         const data = Object.fromEntries(formData.entries());
 
-        var myVCard = new VCard()
-        myVCard
-            .addName(data.lname, data.fname, '', '', '')
-            .addCompany('MyProjectUSA')
-            .addJobtitle(data.role)
-            .addEmail(data.email)
-            .addPhoneNumber(data.phone, 'PREF:CELL')
-            .addPhoneNumber('6149050977','WORK')
-            .addAddress('', '', '3275 Sullivant Ave', 'Columbus', '', '43204', 'Ohio')
-            .addURL('https://www.myprojectusa.org/')
-
-        const output = myVCard.toString()
-
-        const blob = new Blob([output], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const preElement = document.querySelector('#output')
-        const downloadLink = document.createElement('a');
-
-        downloadLink.download = data.lname + '.vcf';
-        downloadLink.href = url;
-        downloadLink.innerText = 'VCF File for ' + data.fname + ' ' + data.lname;
-        preElement.appendChild(downloadLink);
-        let newLine = document.createTextNode('\n');
-        preElement.appendChild(newLine);
-    });
-</script>
-<pre id="output"></pre>
-</body>
+        // Send the form data to the server using AJAX
+        fetch("save_vcard.php", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const url = data.url; // Get the URL of the vCard file from the server
+            const downloadLink = document.createElement("a");
+            downloadLink.download = data.filename;
+            downloadLink.href = url;
+            downloadLink.innerText = "Download vCard file";
+            document.body.appendChild(downloadLink);
+          });
+      });
+    </script>
+    <pre id="output"></pre>
+  </body>
 </html>
