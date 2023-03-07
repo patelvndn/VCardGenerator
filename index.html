@@ -39,21 +39,69 @@
         // Convert the form data to an object
         const data = Object.fromEntries(formData.entries());
 
-        // Send the form data to the server using AJAX
-        fetch("save_vcard.php", {
-          method: "POST",
-          body: formData,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            const url = data.url; // Get the URL of the vCard file from the server
-            const downloadLink = document.createElement("a");
-            downloadLink.download = data.filename;
-            downloadLink.href = url;
-            downloadLink.innerText = "Download vCard file";
-            document.body.appendChild(downloadLink);
-          });
+        var myVCard = new VCard();
+        myVCard
+          .addName(data.lname, data.fname, "", "", "")
+          .addCompany("MyProjectUSA")
+          .addJobtitle(data.role)
+          .addEmail(data.email)
+          .addPhoneNumber(data.phone, "PREF:CELL")
+          .addPhoneNumber("6149050977", "WORK")
+          .addAddress(
+            "",
+            "",
+            "3275 Sullivant Ave",
+            "Columbus",
+            "",
+            "43204",
+            "Ohio"
+          )
+          .addURL("https://www.myprojectusa.org/");
+
+        const output = myVCard.toString();
+
+        const blob = new Blob([output], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const preElement = document.querySelector("#output");
+        const downloadLink = document.createElement("a");
+
+        downloadLink.download = data.lname + ".vcf";
+        downloadLink.href = url;
+        downloadLink.innerText =
+          "VCF File for " + data.fname + " " + data.lname;
+        preElement.appendChild(downloadLink);
+        let newLine = document.createTextNode("\n");
+        preElement.appendChild(newLine);
       });
+
+      let fileName = data.lname + ".vcf";
+      let filePath = "vcf/" + fileName;
+
+      fetch("save_vcf.php", {
+        method: "POST",
+        body: output,
+        headers: {
+          "Content-Type": "text/plain",
+          "Content-Disposition": `attachment; filename="${fileName}"`,
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const preElement = document.querySelector("#output");
+          const downloadLink = document.createElement("a");
+          downloadLink.download = fileName;
+          downloadLink.href = filePath;
+          downloadLink.innerText =
+            "VCF File for " + data.fname + " " + data.lname;
+          preElement.appendChild(downloadLink);
+          let newLine = document.createTextNode("\n");
+          preElement.appendChild(newLine);
+        })
+        .catch((error) => {
+          console.error("There was an error saving the file:", error);
+        });
     </script>
     <pre id="output"></pre>
   </body>

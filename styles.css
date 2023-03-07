@@ -7,35 +7,6 @@ body {
   line-height: 1.5;
 }
 
-hr {
-  border: none;
-  height: 1px;
-  background: #ccc;
-  margin: 2em 0;
-}
-
-hr::before {
-  content: "\2022 \2022 \2022";
-  font-size: 1.5em;
-  letter-spacing: 0.5em;
-  line-height: 0.1em;
-  color: #ccc;
-  text-align: center;
-  display: block;
-  margin-bottom: 1em;
-}
-
-hr::after {
-  content: "\2022 \2022 \2022";
-  font-size: 1.5em;
-  letter-spacing: 0.5em;
-  line-height: 0.1em;
-  color: #ccc;
-  text-align: center;
-  display: block;
-  margin-top: 1em;
-}
-
 h1 {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 2em;
