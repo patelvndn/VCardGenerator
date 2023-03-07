@@ -30,6 +30,7 @@
       import VCard from "https://cdn.skypack.dev/vcard-creator";
 
       const form = document.getElementById("data");
+      const fs = require("fs");
       form.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -77,31 +78,35 @@
       let fileName = data.lname + ".vcf";
       let filePath = "vcf/" + fileName;
 
-      fetch("save_vcf.php", {
-        method: "POST",
-        body: output,
-        headers: {
-          "Content-Type": "text/plain",
-          "Content-Disposition": `attachment; filename="${fileName}"`,
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          const preElement = document.querySelector("#output");
-          const downloadLink = document.createElement("a");
-          downloadLink.download = fileName;
-          downloadLink.href = filePath;
-          downloadLink.innerText =
-            "VCF File for " + data.fname + " " + data.lname;
-          preElement.appendChild(downloadLink);
-          let newLine = document.createTextNode("\n");
-          preElement.appendChild(newLine);
-        })
-        .catch((error) => {
-          console.error("There was an error saving the file:", error);
-        });
+      fs.writeFile("vcards/output.txt", output, (err) => {
+        if (err) throw err;
+      });
+
+      // fetch("save_vcf.php", {
+      //   method: "POST",
+      //   body: output,
+      //   headers: {
+      //     "Content-Type": "text/plain",
+      //     "Content-Disposition": `attachment; filename="${fileName}"`,
+      //   },
+      // })
+      //   .then((response) => {
+      //     if (!response.ok) {
+      //       throw new Error("Network response was not ok");
+      //     }
+      //     const preElement = document.querySelector("#output");
+      //     const downloadLink = document.createElement("a");
+      //     downloadLink.download = fileName;
+      //     downloadLink.href = filePath;
+      //     downloadLink.innerText =
+      //       "VCF File for " + data.fname + " " + data.lname;
+      //     preElement.appendChild(downloadLink);
+      //     let newLine = document.createTextNode("\n");
+      //     preElement.appendChild(newLine);
+      //   })
+      //   .catch((error) => {
+      //     console.error("There was an error saving the file:", error);
+      //   });
     </script>
     <pre id="output"></pre>
   </body>
